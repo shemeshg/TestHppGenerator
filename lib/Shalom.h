@@ -10,3 +10,4 @@ public:
     void say_bye();
     const std::vector<std::string> peopleNames(std::string additionalName);
 };
+

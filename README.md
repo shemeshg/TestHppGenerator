@@ -1,5 +1,7 @@
 # example generating include and cpp files
 
+https://github.com/shemeshg/TestHppGenerator/blob/main/lib/Shalom.hpp
+
 ```cpp
 //-define-file body MyLib.cpp 
 //-define-file header MyLib.h
