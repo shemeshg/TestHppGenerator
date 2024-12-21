@@ -73,9 +73,42 @@ def parse_file(input_file):
 
     is_next_text = False
     next_text = ""
-    next_from_position = 0
     next_text_skip_only_files = 1
     next_only_file_id = ""
+
+    is_defining_template = False
+    templates_map = {}
+    current_template = ""
+    lines_without_templates = []
+    for line in lines:
+        lstrip_line = line.lstrip()
+        if lstrip_line.startswith("//-template"):
+            parts = get_string_parts(lstrip_line)
+            is_defining_template = True
+            current_template = parts[1]
+            templates_map[current_template] = ""            
+        elif is_defining_template:
+            if lstrip_line.startswith("//-end-template"):
+                is_defining_template = False
+                current_template = ""
+            else:
+                templates_map[current_template] += line  
+        else:
+            lines_without_templates.append(line)
+
+    lines = []
+    for t in templates_map:
+        for i in range(len(lines_without_templates)):
+            lstrip_line = lines_without_templates[i].lstrip()
+            if lstrip_line.startswith("//- " + t):         
+                splited = templates_map[t].splitlines()
+                splited = [line + "\n" for line in splited]
+                lines.extend(splited)
+            else:
+                lines.append(lines_without_templates[i])
+        lines_without_templates = lines
+
+
     for line in lines:
         lstrip_line = line.lstrip()
         if lstrip_line.startswith("//-define-file"):
@@ -84,7 +117,7 @@ def parse_file(input_file):
             fileMap[parts[1]] = FileClass()
             fileMap[parts[1]].file_id = parts[1]
             fileMap[parts[1]].file_path = parts[2]
-            fileMap[parts[1]].file_content = []
+            fileMap[parts[1]].file_content = []  
         elif lstrip_line.startswith("//-var"):
             parts = get_string_parts(lstrip_line)
             varsMap[parts[1]] = parts[2]            

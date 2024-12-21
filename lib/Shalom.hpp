@@ -7,6 +7,18 @@
 //-only-file header
 #include <string>
 
+//-template {function}
+//-only-file body //-
+//-     {NEXT[0]} {PRE}::{NEXT[1:]} 
+//-only-file header ;
+//-end-template
+
+//-template {const_function}
+//-only-file body //-    
+//-     {NEXT[0]} {NEXT[1]} {PRE}::{NEXT[2:]} 
+//-only-file header ;
+//-end-template
+
 //-var {PRE} Shalom
 class Shalom
 {
@@ -21,27 +33,21 @@ public:
     {
     }
 
-    //-only-file body //-
-    //- {NEXT[0]} {PRE}::{NEXT[1:]} 
-    //-only-file header ;
+    //- {function}
     void say_shalom()
     //-only-file body
     {
         std::cout << "Shalom " << name << ", from MyLib!\n";
     }
 
-    //-only-file body //-
-    //- {NEXT[0]} {PRE}::{NEXT[1:]} 
-    //-only-file header ;
+    //- {function}
     void say_bye()
     //-only-file body
     {
         std::cout << "Goodbye " << name << ", from MyLib!\n";
     }
 
-    //-only-file body //-    
-    //- {NEXT[0]} {NEXT[1]} {PRE}::{NEXT[2:]} 
-    //-only-file header ;
+    //- {const_function}
     const std::vector<std::string> peopleNames(std::string additionalName)
     //-only-file body
     {
