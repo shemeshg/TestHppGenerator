@@ -14,7 +14,7 @@ class Shalom
 
 public:
     //-only-file body //-
-    //- {PRE}::{NEXT[0:]} :name(name)
+    //- {PRE}{NEXT[0:]} :name(name)
     //-only-file header ;
     Shalom(std::string name)
     //-only-file body
