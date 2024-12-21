@@ -59,7 +59,14 @@ def extract_next_value(string):
     else:
         return None
 
+
+is_defining_template = False
+templates_map = {}
+current_template = ""
 def parse_file(input_file):
+    global is_defining_template
+    global templates_map
+    global current_template
     with open(input_file, 'r') as file:
         lines = file.readlines()
 
@@ -76,9 +83,6 @@ def parse_file(input_file):
     next_text_skip_only_files = 1
     next_only_file_id = ""
 
-    is_defining_template = False
-    templates_map = {}
-    current_template = ""
     lines_without_templates = []
     for line in lines:
         lstrip_line = line.lstrip()

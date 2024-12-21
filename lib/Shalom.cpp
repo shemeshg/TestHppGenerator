@@ -1,7 +1,7 @@
 #include "Shalom.h"
 #include <iostream>
 #include <vector>
-    Shalom::Shalom(std::string name) :name(name)
+    Shalom::::Shalom(std::string name) :name(name)
     {
     }
 
@@ -15,7 +15,7 @@
         std::cout << "Goodbye " << name << ", from MyLib!\n";
     }
 
-    const std::vector<std::string> Shalom::peopleNames(std::string additionalName) 
+    const std::vector<std::string> Shalom::::peopleNames(std::string additionalName) 
     {
         std::vector<std::string> s = {"aaa", "bbb", additionalName};
         return s;

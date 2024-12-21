@@ -1,0 +1,11 @@
+//-template {function}
+//-only-file body //-
+//-     {NEXT[0]} {PRE}{NEXT[1:]} 
+//-only-file header ;
+//-end-template
+
+//-template {const_function}
+//-only-file body //-    
+//-     {NEXT[0]} {NEXT[1]} {PRE}::{NEXT[2:]} 
+//-only-file header ;
+//-end-template
