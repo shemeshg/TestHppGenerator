@@ -1,7 +1,7 @@
 //-define-file body Shalom.cpp
 //-define-file header Shalom.h
-//-only-file body
-#include "Shalom.h"
+//-only-file body //-
+//- #include "Shalom.h"
 #include <iostream>
 #include <vector>
 //-only-file header
@@ -15,9 +15,9 @@ class Shalom
 public:
     //-only-file body //-
     //- {PRE}
-    //- Shalom(std::string  popo, std::string name )   
+    //- Shalom(std::string  popo, int popo2, std::string name )   
     //-only-file header ;
-    Shalom(std::string  popo, std::string name = "World")
+    Shalom(std::string  popo, int popo2,std::string name = "World")
     //-only-file body
     :name(name)
     {       
@@ -25,7 +25,7 @@ public:
     }
 
     //- {constructor}
-    Shalom()
+    Shalom(std::string name )
     //-only-file body
     :name(name)
     {                

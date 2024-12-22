@@ -2,12 +2,13 @@
 #include <iostream>
 #include <vector>
     Shalom::
-    Shalom(std::string  popo, std::string name )   
+    Shalom(std::string  popo, int popo2, std::string name )   
     :name(name)
-    {        
+    {       
+        name = name + popo; 
     }
 
-Shalom::Shalom()
+Shalom::Shalom(std::string name )
     :name(name)
     {                
     }
