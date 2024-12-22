@@ -13,11 +13,22 @@ class Shalom
     std::string name;
 
 public:
-    //- {constructor}
-    Shalom(std::string name)
+    //-only-file body //-
+    //- {PRE}
+    //- Shalom(std::string  popo, std::string name )   
+    //-only-file header ;
+    Shalom(std::string  popo, std::string name = "World")
     //-only-file body
     :name(name)
-    {
+    {       
+        name = name + popo; 
+    }
+
+    //- {constructor}
+    Shalom()
+    //-only-file body
+    :name(name)
+    {                
     }
 
     //- {function}

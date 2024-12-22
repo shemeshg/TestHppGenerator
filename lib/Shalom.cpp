@@ -1,9 +1,15 @@
 #include "Shalom.h"
 #include <iostream>
 #include <vector>
-Shalom::Shalom(std::string name)
+    Shalom::
+    Shalom(std::string  popo, std::string name )   
     :name(name)
-    {
+    {        
+    }
+
+Shalom::Shalom()
+    :name(name)
+    {                
     }
 
     void Shalom::say_shalom() 
