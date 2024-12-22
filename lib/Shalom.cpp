@@ -1,7 +1,7 @@
 #include "Shalom.h"
 #include <iostream>
 #include <vector>
-    Shalom::Shalom(std::string name)
+Shalom::Shalom(std::string name)
     :name(name)
     {
     }

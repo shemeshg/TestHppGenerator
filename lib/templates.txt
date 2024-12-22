@@ -9,3 +9,9 @@
 //-     {NEXT[0]} {NEXT[1]} {PRE}{NEXT[2:]} 
 //-only-file header ;
 //-end-template
+
+//-template {constructor}
+//-only-file body //-
+//- {PRE}{NEXT[0:]}
+//-only-file header ;
+//-end-template

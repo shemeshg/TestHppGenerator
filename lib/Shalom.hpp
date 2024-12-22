@@ -13,9 +13,7 @@ class Shalom
     std::string name;
 
 public:
-    //-only-file body //-
-    //- {PRE}{NEXT[0:]}
-    //-only-file header ;
+    //- {constructor}
     Shalom(std::string name)
     //-only-file body
     :name(name)
