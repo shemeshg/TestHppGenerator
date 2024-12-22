@@ -104,7 +104,8 @@ def parse_file(input_file):
     for t in templates_map:
         for i in range(len(lines_without_templates)):
             lstrip_line = lines_without_templates[i].lstrip()
-            if lstrip_line.startswith("//- " + t):         
+            parts = get_string_parts(lstrip_line)
+            if len(parts) >= 2 and parts[0] == "//-" and parts[1] == t:            
                 splited = templates_map[t].splitlines()
                 splited = [line + "\n" for line in splited]
                 lines.extend(splited)
