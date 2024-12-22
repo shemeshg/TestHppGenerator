@@ -10,4 +10,6 @@ https://github.com/shemeshg/TestHppGenerator/blob/main/lib/Shalom.hpp
 
 https://github.com/shemeshg/TestHppGenerator/blob/main/lib/MyLib.hpp
 
+https://github.com/shemeshg/TestHppGenerator/blob/main/lib/QtQmlExample.hpp
+
 https://github.com/shemeshg/TestHppGenerator/blob/main/lib/templates.txt
