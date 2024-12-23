@@ -70,7 +70,7 @@ def parse_file(input_file):
     with open(input_file, 'r') as file:
         lines = file.readlines()
 
-    fileMap = {}
+    fileMap = {"null": FileClass()}
     varsMap = {}
 
     is_only_file = False
@@ -168,9 +168,9 @@ def parse_file(input_file):
                 next_text += line
             fileMap[only_file_id].file_content.append(line)
 
-    for file_id in fileMap:
-        print("Writing file " + fileMap[file_id].file_path)
-        if fileMap[file_id].file_content:            
+    for file_id in fileMap:        
+        if fileMap[file_id].file_content and file_id != "null":            
+            print("Writing file " + fileMap[file_id].file_path)
             with open(fileMap[file_id].file_path, 'w') as file:
                 file.writelines(fileMap[file_id].file_content)
 

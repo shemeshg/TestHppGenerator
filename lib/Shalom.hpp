@@ -1,5 +1,5 @@
-//-define-file body Shalom.cpp
-//-define-file header Shalom.h
+//-define-file body gen/Shalom.cpp
+//-define-file header gen/Shalom.h
 //-only-file body //-
 //- #include "Shalom.h"
 #include <iostream>

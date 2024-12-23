@@ -1,5 +1,5 @@
-//-define-file body mytype.cpp
-//-define-file header mytype.h
+//-define-file body gen/mytype.cpp
+//-define-file header gen/mytype.h
 //-only-file body //-
 //- #include "mytype.h"
 //-only-file header

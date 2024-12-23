@@ -1,9 +1,12 @@
-//-define-file body MyLib.cpp 
-//-define-file header MyLib.h
-//-only-file body
+//-define-file body gen/MyLib.cpp 
+//-define-file header gen/MyLib.h
+//-only-file null
+#include "Shalom.hpp"
+//-only-file body //-
+//- #include "MyLib.h"
+//- #include "Shalom.h"
 #include <iostream>
-#include "MyLib.h"
-#include "Shalom.h"
+
 
 //-var {PRE} ""
 //- {function}
