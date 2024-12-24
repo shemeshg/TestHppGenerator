@@ -26,8 +26,10 @@ def replace_next(template, NEXT):
     def replacer(match):
         expr = match.group(1)
         if ':' in expr:
-            start = int(expr.split(':')[0])
-            return ' '.join(NEXT[start:])
+            parts = expr.split(':')
+            start = int(parts[0]) if parts[0] else 0
+            end = int(parts[1]) if parts[1] else len(NEXT)
+            return ' '.join(NEXT[start:end])
         else:
             index = int(expr)
             return NEXT[index]
