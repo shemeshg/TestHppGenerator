@@ -13,11 +13,8 @@ class Shalom
     std::string name;
 
 public:
-    //-only-file body //-
-    //- {PRE}
-    //- Shalom(std::string  popo, int popo2, std::string name )   
-    //-only-file header ;
-    Shalom(std::string  popo, int popo2,std::string name = "World")
+    //- {function} 0
+    Shalom(std::string  popo, int popo2, std::string name = "World")
     //-only-file body
     :name(name)
     {       
@@ -25,7 +22,7 @@ public:
     }
 
    //- {function} 0
-    Shalom(std::string name )
+    Shalom(std::string name = "koko")
     //-only-file body
     :name(name)
     {                

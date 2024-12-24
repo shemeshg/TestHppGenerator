@@ -22,6 +22,13 @@ class FileClass:
     file_id = ""
     file_content = []
 
+def remove_default_assignment(declaration):
+    # Regular expression to match default assignments
+    pattern = re.compile(r'\s*=\s*".*?"|\s*=\s*\w+|\s*=\s*\(.*?\)\s*=>\s*\{.*?\}')
+    # Replace the default assignments with an empty string
+    result = re.sub(pattern, '', declaration)
+    return result
+
 def replace_next(template, NEXT):
     def replacer(match):
         expr = match.group(1)
@@ -143,8 +150,9 @@ def parse_file(input_file):
                         template = fileMap[next_only_file_id].file_content[i]
                         NEXT = get_string_parts(next_text)
 
-                        if extract_next_value(template) is not None:
+                        if extract_next_value(template) is not None:                            
                             fileMap[next_only_file_id].file_content[i]  = replace_next(template, NEXT)
+                            fileMap[next_only_file_id].file_content[i] = remove_default_assignment(fileMap[next_only_file_id].file_content[i])                            
                             
 
                     is_next_text = False
