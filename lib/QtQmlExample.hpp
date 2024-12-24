@@ -16,10 +16,7 @@ class MyType : public QObject
     QML_ELEMENT
 
 public:
-    //-only-file body //-
-    //- {PRE}
-    //- MyType(QObject *parent)
-    //-only-file header ;
+    //- {function} 1 1
     explicit MyType(QObject *parent = nullptr)
         //-only-file body
         : QObject{parent}

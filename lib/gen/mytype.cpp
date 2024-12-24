@@ -1,6 +1,5 @@
 #include "mytype.h"
-    MyType::
-    MyType(QObject *parent)
+     MyType::MyType(QObject *parent) 
         : QObject{parent}
     {}
 
