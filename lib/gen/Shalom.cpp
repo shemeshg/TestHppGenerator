@@ -14,7 +14,7 @@
 
     void Shalom::say_shalom() 
     {
-        std::cout << "Shalom " << name << ", from MyLib!\n";
+        std::cout << "Shalom olam "  << name << ", from MyLib!\n";
     }
 
     void Shalom::say_bye() 

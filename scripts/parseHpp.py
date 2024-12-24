@@ -22,6 +22,34 @@ class FileClass:
     file_id = ""
     file_content = []
 
+import os
+
+def update_file_if_needed(file_path, new_content):
+    """
+    Checks if the content of the file at file_path is different from new_content.
+    If different, deletes the file and writes new_content to it.
+    If the same, does nothing.
+    """
+    # Check if the file exists
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            content = file.read()
+
+        if content != new_content:
+            print("File content changed: " + file_path)
+            # Delete the file
+            os.remove(file_path)
+            
+            # Write new_content to the file
+            with open(file_path, 'w') as file:
+                file.write(new_content)
+    else:
+        # If the file doesn't exist, create it and write new_content
+        with open(file_path, 'w') as file:
+            file.write(new_content)
+
+
+
 def remove_default_assignment(declaration):
     # Regular expression to match default assignments
     pattern = re.compile(r'\s*=\s*".*?"|\s*=\s*\w+|\s*=\s*\(.*?\)\s*=>\s*\{.*?\}')
@@ -186,9 +214,10 @@ def parse_file(input_file):
 
     for file_id in fileMap:        
         if fileMap[file_id].file_content and file_id != "null":            
-            print("Write file " + fileMap[file_id].file_path)
-            with open(fileMap[file_id].file_path, 'w') as file:
-                file.writelines(fileMap[file_id].file_content)
+            #print("Write file " + fileMap[file_id].file_path)
+            update_file_if_needed(fileMap[file_id].file_path, "".join(fileMap[file_id].file_content))
+            #with open(fileMap[file_id].file_path, 'w') as file:
+            #    file.writelines(fileMap[file_id].file_content)
 
 if __name__ == "__main__":
     for arg in sys.argv[1:]:

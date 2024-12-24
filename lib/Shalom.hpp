@@ -32,7 +32,7 @@ public:
     void say_shalom()
     //-only-file body
     {
-        std::cout << "Shalom " << name << ", from MyLib!\n";
+        std::cout << "Shalom olam "  << name << ", from MyLib!\n";
     }
 
     //- {function} 0 1
