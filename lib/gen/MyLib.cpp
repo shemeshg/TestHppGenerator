@@ -1,12 +1,13 @@
 #include "MyLib.h"
 #include "Shalom.h"
+#include "folderb.h"
 #include <iostream>
-
-
     void say_hello() 
 {
-    Shalom s("Yossi");
-    s.say_shalom();    
+    FolderB f("Yossi");
+    
+    f.say_shalom();    
+    f.say_folderb();
 }
 
     void say_aloha () 

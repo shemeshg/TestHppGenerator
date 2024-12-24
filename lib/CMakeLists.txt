@@ -1,5 +1,5 @@
 # Define a custom target to run the shell script
-file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp")
+file(GLOB HEADER_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/FolderB/*.hpp")
 add_custom_target(run_script ALL
     COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/parseHpp.py ${CMAKE_SOURCE_DIR}/scripts/hppTemplates.txt ${HEADER_FILES}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -25,6 +25,8 @@ set(MyLib_SRCS
     gen/MyLib.cpp
     gen/Shalom.h
     gen/Shalom.cpp
+    gen/folderb.h 
+    gen/folderb.cpp
 )
 
 # Declare the library

@@ -1,7 +1,10 @@
 //-define-file body gen/mytype.cpp
 //-define-file header gen/mytype.h
+//-only-file header //-
+//- #pragma once
 //-only-file body //-
 //- #include "mytype.h"
+//-only-file null
 //-only-file header
 #pragma once
 

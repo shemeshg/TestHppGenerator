@@ -1,10 +1,13 @@
+#pragma once
 #include <string>
 
 class Shalom
 {
-    std::string name;
+   
 
 public:
+     std::string name;
+
     Shalom(std::string  popo, int popo2, std::string name = "World");
     Shalom(std::string name = "koko");
     void say_shalom();

@@ -1,5 +1,7 @@
 //-define-file body gen/Shalom.cpp
 //-define-file header gen/Shalom.h
+//-only-file header //-
+//- #pragma once
 //-only-file body //-
 //- #include "Shalom.h"
 #include <iostream>
@@ -10,9 +12,11 @@
 //-var {PRE} Shalom::
 class Shalom
 {
-    std::string name;
+   
 
 public:
+     std::string name;
+
     //- {function} 0 0
     Shalom(std::string  popo, int popo2, std::string name = "World")
     //-only-file body
