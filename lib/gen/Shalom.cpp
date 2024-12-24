@@ -8,7 +8,7 @@
         name = name + popo; 
     }
 
-Shalom::Shalom(std::string name )
+     Shalom::Shalom(std::string name ) 
     :name(name)
     {                
     }

@@ -24,28 +24,28 @@ public:
         name = name + popo; 
     }
 
-    //- {constructor}
+   //- {function} 0
     Shalom(std::string name )
     //-only-file body
     :name(name)
     {                
     }
 
-    //- {function}
+    //- {function} 1
     void say_shalom()
     //-only-file body
     {
         std::cout << "Shalom " << name << ", from MyLib!\n";
     }
 
-    //- {function}
+    //- {function} 1
     void say_bye()
     //-only-file body
     {
         std::cout << "Goodbye " << name << ", from MyLib!\n";
     }
 
-    //- {const_function}
+    //- {function} 2
     const std::vector<std::string> peopleNames(std::string additionalName)
     //-only-file body
     {

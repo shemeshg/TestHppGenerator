@@ -107,8 +107,14 @@ def parse_file(input_file):
         for i in range(len(lines_without_templates)):
             lstrip_line = lines_without_templates[i].lstrip()
             parts = get_string_parts(lstrip_line)
-            if len(parts) >= 2 and parts[0] == "//-" and parts[1] == t:            
-                splited = templates_map[t].splitlines()
+            if len(parts) >= 2 and parts[0] == "//-" and parts[1] == t:    
+                str_template = templates_map[t]
+                i=0
+                for itm in parts[2:]:
+                    str_template = str_template.replace("{PRM_" + str(i) + "}", itm)
+                    i+=1
+
+                splited = str_template.splitlines()
                 splited = [line + "\n" for line in splited]
                 lines.extend(splited)
             else:

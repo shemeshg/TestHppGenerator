@@ -9,7 +9,7 @@
 
 
 //-var {PRE} ""
-//- {function}
+//- {function} 1
 void say_hello()
 //-only-file body
 {
@@ -17,7 +17,7 @@ void say_hello()
     s.say_shalom();    
 }
 
-//- {function}
+//- {function} 1
 void say_aloha ()
 //-only-file body
 {
