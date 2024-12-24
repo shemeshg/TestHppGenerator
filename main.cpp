@@ -2,5 +2,5 @@
 #include <MyLib.h>
 
 int main(int, char**){
-    say_hello();
+    say_hello();    
 }
