@@ -1,6 +1,5 @@
 #include "Shalom.h"
 #include <iostream>
-#include <vector>
      Shalom::Shalom(std::string popo, int popo2, std::string name ) 
     :name(name)
     {       

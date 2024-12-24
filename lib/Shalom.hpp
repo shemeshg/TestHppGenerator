@@ -5,9 +5,9 @@
 //-only-file body //-
 //- #include "Shalom.h"
 #include <iostream>
-#include <vector>
 //-only-file header
 #include <string>
+#include <vector>
 
 //-var {PRE} Shalom::
 class Shalom
