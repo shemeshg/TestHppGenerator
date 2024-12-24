@@ -186,10 +186,11 @@ def parse_file(input_file):
 
     for file_id in fileMap:        
         if fileMap[file_id].file_content and file_id != "null":            
-            print("Writing file " + fileMap[file_id].file_path)
+            print("Write file " + fileMap[file_id].file_path)
             with open(fileMap[file_id].file_path, 'w') as file:
                 file.writelines(fileMap[file_id].file_content)
 
 if __name__ == "__main__":
     for arg in sys.argv[1:]:
+        print("Read file " + arg)
         parse_file(arg)    

@@ -25,14 +25,14 @@ public:
         : QObject{parent}
     {}
 
-    //- {function} 1
+    //- {function} 0 1
     QString name() const
     //-only-file body
     {
         return "FROM BACKEND";
     };
 
-    //- {function} 1
+    //- {function} 0 1
     void setName(const QString &name)
     //-only-file body
     {

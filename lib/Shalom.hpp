@@ -13,7 +13,7 @@ class Shalom
     std::string name;
 
 public:
-    //- {function} 0
+    //- {function} 0 0
     Shalom(std::string  popo, int popo2, std::string name = "World")
     //-only-file body
     :name(name)
@@ -21,29 +21,29 @@ public:
         name = name + popo; 
     }
 
-   //- {function} 0
+   //- {function} 0 0
     Shalom(std::string name = "koko")
     //-only-file body
     :name(name)
     {                
     }
 
-    //- {function} 1
+    //- {function} 0 1
     void say_shalom()
     //-only-file body
     {
         std::cout << "Shalom " << name << ", from MyLib!\n";
     }
 
-    //- {function} 1
+    //- {function} 0 1
     void say_bye()
     //-only-file body
     {
         std::cout << "Goodbye " << name << ", from MyLib!\n";
     }
 
-    //- {function} 2
-    const std::vector<std::string> peopleNames(std::string additionalName)
+    //- {function} 1 3
+    virtual const std::vector<std::string> peopleNames(std::string additionalName)
     //-only-file body
     {
         std::vector<std::string> s = {"aaa", "bbb", additionalName};
