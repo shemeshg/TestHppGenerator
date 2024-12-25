@@ -26,7 +26,7 @@ public:
     }
 
    //- {function} 0 0
-    Shalom(std::string name = "koko")
+    Shalom(std::string name = "koko 2")
     //-only-file body
     :name(name)
     {                
