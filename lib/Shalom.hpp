@@ -1,5 +1,6 @@
 //-define-file body gen/Shalom.cpp
 //-define-file header gen/Shalom.h
+//- {link_back} "../Shalom.hpp"
 //-only-file header //-
 //- #pragma once
 //-only-file body //-

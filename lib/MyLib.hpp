@@ -1,5 +1,6 @@
 //-define-file body gen/MyLib.cpp 
 //-define-file header gen/MyLib.h
+//- {link_back} "../MyLib.hpp"
 //-only-file header //-
 //- #pragma once
 //-only-file body //-
