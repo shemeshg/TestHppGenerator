@@ -1,4 +1,3 @@
-// See file:///./../Shalom.hpp 
 #include "Shalom.h"
 #include <iostream>
      Shalom::Shalom(std::string popo, int popo2, std::string name ) 

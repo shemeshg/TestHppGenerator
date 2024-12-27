@@ -1,4 +1,3 @@
-// See file:///./../MyLib.hpp 
 #include "MyLib.h"
 #include "Shalom.h"
 #include "folderb.h"
@@ -14,4 +13,9 @@
     void say_aloha () 
 {
     std::cout << "Aloha from MyLib!\n";
+}
+
+    std::vector<std::string> get_names() 
+{
+    return {"Yossi", "Moshe", "Dana"};
 }

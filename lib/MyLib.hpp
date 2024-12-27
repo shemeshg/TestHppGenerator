@@ -11,6 +11,8 @@
 //-only-file null
 #include "FolderB/folderb.hpp"
 //-only-file header 
+#include <vector>
+#include <string>
 
 //-var {PRE} ""
 //- {function} 0 1
@@ -28,4 +30,11 @@ void say_aloha ()
 //-only-file body
 {
     std::cout << "Aloha from MyLib!\n";
+}
+
+//- {function} 0 1
+std::vector<std::string> get_names()
+//-only-file body
+{
+    return {"Yossi", "Moshe", "Dana"};
 }
