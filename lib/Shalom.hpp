@@ -22,7 +22,7 @@ public:
     }
 
     //- {function} 0 0
-    Shalom(std::string name )
+    Shalom(std::string name)
     //-only-file body
     :name(name)
     {                
