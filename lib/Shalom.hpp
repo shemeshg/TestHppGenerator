@@ -13,39 +13,36 @@ class Shalom
     std::string name;
 
 public:
-    //-only-file body //-
-    //- {PRE}
-    //- Shalom(std::string  popo, int popo2, std::string name )   
-    //-only-file header ;
-    Shalom(std::string  popo, int popo2,std::string name = "World")
+    //- {fn}
+    explicit Shalom(std::string  popo, int popo2,std::string name = "World")
     //-only-file body
     :name(name)
     {       
         name = name + popo; 
     }
 
-    //- {constructor}
+    //- {function} 0 0
     Shalom(std::string name )
     //-only-file body
     :name(name)
     {                
     }
 
-    //- {function}
+    //- {fn}
     void say_shalom()
     //-only-file body
     {
         std::cout << "Shalom " << name << ", from MyLib!\n";
     }
 
-    //- {function}
+    //- {fn}
     void say_bye()
     //-only-file body
     {
         std::cout << "Goodbye " << name << ", from MyLib!\n";
     }
 
-    //- {const_function}
+    //- {function} 0 2
     const std::vector<std::string> peopleNames(std::string additionalName)
     //-only-file body
     {

@@ -1,3 +1,4 @@
+# ver 1.3
 # //-define-file body MyLib.cpp 
 # //-define-file header MyLib.h
 # //-only-file body
@@ -16,18 +17,60 @@
 import os
 import re
 import sys
+import concurrent.futures
 
 class FileClass:
     file_path = ""
     file_id = ""
     file_content = []
 
+import os
+
+def update_file_if_needed(file_path, new_content):
+    """
+    Checks if the content of the file at file_path is different from new_content.
+    If different, deletes the file and writes new_content to it.
+    If the same, does nothing.
+    """
+    # Check if the file exists
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            content = file.read()
+
+        if content != new_content:
+            print("File content changed: " + file_path)
+            # Delete the file
+            os.remove(file_path)
+            
+            # Write new_content to the file
+            with open(file_path, 'w') as file:
+                file.write(new_content)
+    else:
+        # If the file doesn't exist, create it and write new_content
+        with open(file_path, 'w') as file:
+            file.write(new_content)
+
+
+
+def remove_default_assignment(declaration):
+    # Regular expression to match default assignments
+    pattern = re.compile(r'\s*=\s*".*?"|\s*=\s*\w+|\s*=\s*\(.*?\)\s*=>\s*\{.*?\}')
+    # Replace the default assignments with an empty string
+    result = re.sub(pattern, '', declaration)
+    result = re.sub(r" override(\s|\n)", "", result)
+    result = re.sub(r" explicit(\s|\n)", "", result)
+    result = re.sub(r" virtual(\s|\n)", "", result) 
+    
+    return result
+
 def replace_next(template, NEXT):
     def replacer(match):
         expr = match.group(1)
         if ':' in expr:
-            start = int(expr.split(':')[0])
-            return ' '.join(NEXT[start:])
+            parts = expr.split(':')
+            start = int(parts[0]) if parts[0] else 0
+            end = int(parts[1]) if parts[1] else len(NEXT)
+            return ' '.join(NEXT[start:end])
         else:
             index = int(expr)
             return NEXT[index]
@@ -37,11 +80,26 @@ def replace_next(template, NEXT):
     return result
 
 
-def get_string_parts(line):
-    pattern = re.compile(r'\"(.*?)\"|(\S+)')
+import re
+
+import re
+
+def get_string_parts(line, with_quotes=False):
+    if with_quotes:
+        pattern = re.compile(r'(\".*?\"|\S+<.*?>|\S+\s*\*\s*|\S+)')
+    else:
+        pattern = re.compile(r'\"(.*?)\"|(\S+<.*?>|\S+\s*\*\s*|\S+)')
+    
     matches = pattern.findall(line)
-    parts = [match[0] or match[1] for match in matches]
+    
+    if with_quotes:
+        parts = [match for match in matches]
+    else:
+        parts = [match[0] or match[1] for match in matches]
+    
     return parts
+
+
 
 def extract_next_value(string):
     """
@@ -70,7 +128,7 @@ def parse_file(input_file):
     with open(input_file, 'r') as file:
         lines = file.readlines()
 
-    fileMap = {}
+    fileMap = {"null": FileClass()}
     varsMap = {}
 
     is_only_file = False
@@ -83,8 +141,10 @@ def parse_file(input_file):
     next_text_skip_only_files = 1
     next_only_file_id = ""
 
-    lines_without_templates = []
+    lines_without_templates = []   
+    line_number = 1
     for line in lines:
+        line_number = line_number + 1
         lstrip_line = line.lstrip()
         if lstrip_line.startswith("//-template"):
             parts = get_string_parts(lstrip_line)
@@ -98,25 +158,43 @@ def parse_file(input_file):
             else:
                 templates_map[current_template] += line  
         else:
+            if lstrip_line.startswith("//- {function}") or lstrip_line.startswith("//- {fn}") :
+                lines_without_templates.append("//-only-file header \n")            
+                text = f"#line {line_number} " + '"' + input_file +  '"' + "\n"
+                lines_without_templates.append(text)            
             lines_without_templates.append(line)
+            if lstrip_line.startswith("//-only-file body"):
+                text = f"#line {line_number} " + '"' + input_file +  '"' + "\n"
+                lines_without_templates.append(text)
+
+
 
     lines = []
     for t in templates_map:
         for i in range(len(lines_without_templates)):
             lstrip_line = lines_without_templates[i].lstrip()
             parts = get_string_parts(lstrip_line)
-            if len(parts) >= 2 and parts[0] == "//-" and parts[1] == t:            
-                splited = templates_map[t].splitlines()
+            if len(parts) >= 2 and parts[0] == "//-" and parts[1] == t:    
+                str_template = templates_map[t]
+                i=0
+                for itm in parts[2:]:
+                    str_template = str_template.replace("{PRM_" + str(i) + "}", itm)
+                    i+=1
+
+                splited = str_template.splitlines()
                 splited = [line + "\n" for line in splited]
                 lines.extend(splited)
             else:
                 lines.append(lines_without_templates[i])
         lines_without_templates = lines
 
+    if not templates_map:
+        lines = lines_without_templates
 
-    for line in lines:
+
+    for line in lines:        
         lstrip_line = line.lstrip()
-        if lstrip_line.startswith("//-define-file"):
+        if lstrip_line.startswith("//-define-file"):            
             parts = get_string_parts(lstrip_line)
             
             fileMap[parts[1]] = FileClass()
@@ -133,10 +211,11 @@ def parse_file(input_file):
                 else:  
                     for i in range(len(fileMap[next_only_file_id].file_content)):
                         template = fileMap[next_only_file_id].file_content[i]
-                        NEXT = get_string_parts(next_text)
+                        NEXT = get_string_parts(next_text, True)
 
-                        if extract_next_value(template) is not None:
+                        if extract_next_value(template) is not None:                            
                             fileMap[next_only_file_id].file_content[i]  = replace_next(template, NEXT)
+                            fileMap[next_only_file_id].file_content[i] = remove_default_assignment(fileMap[next_only_file_id].file_content[i])                            
                             
 
                     is_next_text = False
@@ -168,12 +247,25 @@ def parse_file(input_file):
                 next_text += line
             fileMap[only_file_id].file_content.append(line)
 
-    for file_id in fileMap:
-        print("Writing file " + fileMap[file_id].file_path)
-        if fileMap[file_id].file_content:            
-            with open(fileMap[file_id].file_path, 'w') as file:
-                file.writelines(fileMap[file_id].file_content)
+    for file_id in fileMap:        
+        if fileMap[file_id].file_content and file_id != "null":            
+            print("Write file " + fileMap[file_id].file_path)
+            update_file_if_needed(fileMap[file_id].file_path, "".join(fileMap[file_id].file_content))
+            #with open(fileMap[file_id].file_path, 'w') as file:
+            #    file.writelines(fileMap[file_id].file_content)
+
+
+
+
 
 if __name__ == "__main__":
-    for arg in sys.argv[1:]:
-        parse_file(arg)    
+    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+        futures = []
+        # Templates should be read none async
+        parse_file(sys.argv[1])
+        for arg in sys.argv[2:]:
+            futures.append( executor.submit(parse_file, arg) )
+
+        for future in concurrent.futures.as_completed(futures):
+            future.result()
+

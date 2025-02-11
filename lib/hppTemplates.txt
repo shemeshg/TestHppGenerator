@@ -1,17 +1,12 @@
+
 //-template {function}
-//-only-file body //-
-//-     {NEXT[0]} {PRE}{NEXT[1:]} 
-//-only-file header ;
-//-end-template
-
-//-template {const_function}
 //-only-file body //-    
-//-     {NEXT[0]} {NEXT[1]} {PRE}{NEXT[2:]} 
+//-     {NEXT[{PRM_0}:{PRM_1}]} {PRE}{NEXT[{PRM_1}:]} 
 //-only-file header ;
 //-end-template
 
-//-template {constructor}
-//-only-file body //-
-//- {PRE}{NEXT[0:]}
+//-template {fn}
+//-only-file body //-    
+//-     {NEXT[0:1]} {PRE}{NEXT[1:]} 
 //-only-file header ;
 //-end-template

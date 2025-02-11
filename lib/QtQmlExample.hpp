@@ -16,23 +16,20 @@ class MyType : public QObject
     QML_ELEMENT
 
 public:
-    //-only-file body //-
-    //- {PRE}
-    //- MyType(QObject *parent)
-    //-only-file header ;
+    //- {fn}
     explicit MyType(QObject *parent = nullptr)
         //-only-file body
         : QObject{parent}
     {}
 
-    //- {function}
+    //- {fn}
     QString name() const
     //-only-file body
     {
         return "FROM BACKEND";
     };
 
-    //- {function}
+    //- {fn}
     void setName(const QString &name)
     //-only-file body
     {

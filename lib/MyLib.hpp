@@ -6,7 +6,7 @@
 #include "Shalom.h"
 
 //-var {PRE} ""
-//- {function}
+//- {fn}
 void say_hello()
 //-only-file body
 {
@@ -14,7 +14,7 @@ void say_hello()
     s.say_shalom();    
 }
 
-//- {function}
+//- {fn}
 void say_aloha ()
 //-only-file body
 {
