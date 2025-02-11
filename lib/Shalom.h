@@ -1,5 +1,7 @@
+#line 8 "/Volumes/RAM_Disk_4G/TestHppGenerator/lib/Shalom.hpp"
 #include <string>
 
+#line 11 "/Volumes/RAM_Disk_4G/TestHppGenerator/lib/Shalom.hpp"
 class Shalom
 {
     std::string name;
@@ -15,5 +17,6 @@ public:
     void say_bye();
 #line 46 "/Volumes/RAM_Disk_4G/TestHppGenerator/lib/Shalom.hpp"
     const std::vector<std::string> peopleNames(std::string additionalName);
+#line 53 "/Volumes/RAM_Disk_4G/TestHppGenerator/lib/Shalom.hpp"
 };
 
