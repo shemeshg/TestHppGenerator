@@ -3,7 +3,8 @@
 //-only-file body
 #include <iostream>
 #include "MyLib.h"
-#include "Shalom.h"
+//- {include-body}
+#include "Shalom.hpp" //- #include "Shalom.h"
 
 //-var {PRE} ""
 //- {fn}
