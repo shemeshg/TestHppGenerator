@@ -12,13 +12,13 @@
 //-end-template
 
 //-template {include-header}
-//-only-file header  //-  
-//- {NEXT[3:]} 
+//-only-file header  //-
+//- {NEXT[2:]}
 //-only-file null
 //-end-template
 
 //-template {include-body}
-//-only-file body  //-  
-//- {NEXT[3:]} 
+//-only-file body  //-
+//- {NEXT[2:]}
 //-only-file null
 //-end-template

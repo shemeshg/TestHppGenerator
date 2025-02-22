@@ -1,10 +1,12 @@
 //-define-file body MyLib.cpp 
 //-define-file header MyLib.h
-//-only-file body
+//-only-file body //-
 #include <iostream>
 #include "MyLib.h"
+
 //- {include-body}
 #include "Shalom.hpp" //- #include "Shalom.h"
+#include "koko.hpp" //- #include "koko.h"
 
 //-var {PRE} ""
 //- {fn}
